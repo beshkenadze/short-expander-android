@@ -9,17 +9,19 @@ def versionBuild = 0
 android {
     compileSdkVersion 22
     buildToolsVersion "21.1.2"
-
     defaultConfig {
         applicationId "in.appfolio.shortexpander"
-        minSdkVersion 16
+        minSdkVersion 10
         targetSdkVersion 22
-        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}" + (versionPatch == 0 ? "" : ".${versionPatch}")
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -30,6 +32,8 @@ android {
     dexOptions {
         preDexLibraries false
     }
+    productFlavors {
+    }
 }
 
 dependencies {
@@ -38,9 +42,7 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.3.0'
     compile 'com.jakewharton.timber:timber:2.7.1'
     compile 'io.reactivex:rxandroid:0.24.0'
-
     compile('com.crashlytics.sdk.android:crashlytics:2.2.2@aar') {
         transitive = true
     }
-
 }
