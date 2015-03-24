@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="in.appfolio.shortexpander">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <service
+            android:name=".service.ExpanderService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="in.appfolio.shortexpander.action.EXPAND"/>
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.crashlytics.ApiKey"
+            android:value="e80beac2f1d7419628736e7e66664675cfb30721"/>
+
+        <activity
+            android:noHistory="true"
+            android:excludeFromRecents="true"
+            android:name=".ui.ExpanderActivity"
+            android:label="@string/title_activity_expander">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data android:host="t.co"/>
+                <data android:host="bit.ly"/>
+                <data android:host="tinyurl.com"/>
+                <data android:host="j.mp"/>
+                <data android:host="goo.gl"/>
+                <data android:host="twitpic.com"/>
+                <data android:host="img.ly"/>
+                <data android:host="youtu.be"/>
+                <data android:host="mykp.ru"/>
+                <data android:host="htn.to"/>
+                <data android:scheme="http"/>
+                <data android:scheme="https"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
