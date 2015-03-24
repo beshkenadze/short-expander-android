@@ -25,7 +25,7 @@
             android:noHistory="true"
             android:excludeFromRecents="true"
             android:name=".ui.ExpanderActivity"
-            android:label="@string/title_activity_expander">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
