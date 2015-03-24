@@ -13,12 +13,25 @@ android {
         applicationId "in.appfolio.shortexpander"
         minSdkVersion 10
         targetSdkVersion 22
+        versionCode versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100 + versionBuild
         versionName "${versionMajor}.${versionMinor}" + (versionPatch == 0 ? "" : ".${versionPatch}")
     }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    def dirPath = outputFile.parent
+
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = "short-expander-${versionCode}-${versionName}-${buildType.name}.apk";
+                        output.outputFile = new File(dirPath, fileName)
+                    }
+                }
+            }
         }
         debug {
             minifyEnabled true
